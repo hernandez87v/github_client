@@ -91,7 +91,7 @@
 			"destination" : "C:/Users/VladHernandez/repos/github_client/windows/out/install/x64-Debug/data",
 			"paths" : 
 			[
-				"C:/Users/VladHernandez/Documents/CODE/github_client/build//flutter_assets"
+				"C:/Users/VladHernandez/repos/github_client/build//flutter_assets"
 			],
 			"type" : "directory"
 		}

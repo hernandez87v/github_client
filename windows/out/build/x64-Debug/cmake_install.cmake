@@ -93,7 +93,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xRuntimex" OR NOT CMAKE_INSTALL_COMP
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "C:/Users/VladHernandez/repos/github_client/windows/out/install/x64-Debug/data" TYPE DIRECTORY FILES "C:/Users/VladHernandez/Documents/CODE/github_client/build//flutter_assets")
+  file(INSTALL DESTINATION "C:/Users/VladHernandez/repos/github_client/windows/out/install/x64-Debug/data" TYPE DIRECTORY FILES "C:/Users/VladHernandez/repos/github_client/build//flutter_assets")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xRuntimex" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -106,7 +106,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xRuntimex" OR NOT CMAKE_INSTALL_COMP
     if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
       message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
     endif()
-    file(INSTALL DESTINATION "C:/Users/VladHernandez/repos/github_client/windows/out/install/x64-Debug/data" TYPE FILE FILES "C:/Users/VladHernandez/Documents/CODE/github_client/build/windows/app.so")
+    file(INSTALL DESTINATION "C:/Users/VladHernandez/repos/github_client/windows/out/install/x64-Debug/data" TYPE FILE FILES "C:/Users/VladHernandez/repos/github_client/build/windows/app.so")
   endif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Pp][Rr][Oo][Ff][Ii][Ll][Ee]|[Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
 endif()
 
