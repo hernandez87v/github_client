@@ -19,6 +19,7 @@ import 'package:window_to_front/window_to_front.dart';
 
 import 'github_oauth_credentials.dart';
 import 'src/github_login.dart';
+import 'src/github_summary.dart';
 
 // DotEnv dotenv = DotEnv() is automatically called during import.
 // If you want to load multiple dotenv files or name your dotenv object differently, you can do the following and import the singleton into the relavant files:
@@ -53,23 +54,14 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GithubLoginWidget(
       builder: (context, httpClient) {
-        WindowToFront.activate();
-        return FutureBuilder<CurrentUser>(
-          future: viewerDetail(httpClient.credentials.accessToken),
-          builder: (context, snapshot) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(title),
-              ),
-              body: Center(
-                child: Text(
-                  snapshot.hasData
-                      ? 'Hello ${snapshot.data!.login}!'
-                      : 'Retrieving viewer login details...',
-                ),
-              ),
-            );
-          },
+        WindowToFront.activate(); // and this.
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(title),
+          ),
+          body: GitHubSummary(
+            gitHub: _getGitHub(httpClient.credentials.accessToken),
+          ),
         );
       },
       githubClientId: githubClientId,
@@ -79,7 +71,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-Future<CurrentUser> viewerDetail(String accessToken) async {
-  final gitHub = GitHub(auth: Authentication.withToken(accessToken));
-  return gitHub.users.getCurrentUser();
+GitHub _getGitHub(String accessToken) {
+  return GitHub(auth: Authentication.withToken(accessToken));
 }
