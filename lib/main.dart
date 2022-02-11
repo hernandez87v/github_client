@@ -13,9 +13,10 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'github_oauth_credentials.dart';
 import 'src/github_login.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // DotEnv dotenv = DotEnv() is automatically called during import.
 // If you want to load multiple dotenv files or name your dotenv object differently, you can do the following and import the singleton into the relavant files:
@@ -50,15 +51,22 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GithubLoginWidget(
       builder: (context, httpClient) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(title),
-          ),
-          body: const Center(
-            child: Text(
-              'You are logged in to GitHub!',
-            ),
-          ),
+        return FutureBuilder<CurrentUser>(
+          future: viewerDetail(httpClient.credentials.accessToken),
+          builder: (context, snapshot) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(title),
+              ),
+              body: Center(
+                child: Text(
+                  snapshot.hasData
+                      ? 'Hello ${snapshot.data!.login}!'
+                      : 'Retrieving viewer login details...',
+                ),
+              ),
+            );
+          },
         );
       },
       githubClientId: githubClientId,
@@ -66,4 +74,9 @@ class MyHomePage extends StatelessWidget {
       githubScopes: githubScopes,
     );
   }
+}
+
+Future<CurrentUser> viewerDetail(String accessToken) async {
+  final gitHub = GitHub(auth: Authentication.withToken(accessToken));
+  return gitHub.users.getCurrentUser();
 }
