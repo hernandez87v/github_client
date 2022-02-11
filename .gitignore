@@ -11,7 +11,8 @@
 .vscode/
 .ionide/
 .vs/
-.env
+*.env
+*dotenv
 
 # IntelliJ related
 *.iml

@@ -12,9 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// TODO(CodelabUser): Create an OAuth App
-const githubClientId = 'GH_CLIENT_ID';
-const githubClientSecret = 'GH_CLIENT_SECRET';
+// dotenv secrets
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+final githubClientId =
+    dotenv.get('GH_CLIENT_ID', fallback: 'GitHub Client ID not found');
+final githubClientSecret =
+    dotenv.get('GH_CLIENT_SECRET', fallback: 'GitHub Client Secret not found');
 
 // OAuth scopes for repository and user information
 const githubScopes = ['repo', 'read:org'];
