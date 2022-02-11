@@ -22,13 +22,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 // DotEnv another_dotenv = DotEnv()
 
 Future<void> main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load();
   runApp(const MyApp());
 }
-
-// const githubClientId = dotenv.env['GH_CLIENT_ID'];
-// const githubClientSecret = dotenv.env['GH_CLIENT_SECRET'];
-// dotenv.env['GH_CLIENT_SECRET'];
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
